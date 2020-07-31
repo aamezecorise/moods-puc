@@ -1,0 +1,207 @@
+<ion-header [translucent]="true" style="position: absolute; z-index: 1;">
+  <ion-toolbar color="primary" style="padding: 10px;">
+    <ion-searchbar
+      class="my-element2"
+      style="margin-top: 5%; margin-bottom: 10%; color: white;"
+      placeholder="Search"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card
+    style="
+      margin: 0px;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      margin-top: 24%;
+      z-index: 1;
+    "
+  >
+    <ion-grid>
+      <ion-row style="margin-top: 5%;">
+        <!-- <ion-col style="margin-top: 1%;" size="2">
+          <img src="..\assets\icon\add.png" class="CardImg" />
+          <p class="CardHead">Add Pet</p>
+        </ion-col> -->
+
+        <ion-col size="12" style="text-align: center;">
+          <ion-slides
+            #slides
+            pager="false"
+            [options]="sliderOpts"
+            class="my-element4"
+          >
+            <ion-col size="3">
+              <ion-img
+                (click)="openCamera()"
+                src="..\assets\icon\add.png"
+                style="height: 70px; width: 70px;"
+              ></ion-img>
+              <p class="CardHead">Post a Mood</p>
+            </ion-col>
+
+            <ion-slide *ngFor="let story of stories;let i=index">
+              <ion-col
+                (click)="openStoryViewer(i)"
+                style="text-align: -webkit-center;"
+                size="10"
+              >
+                <img
+                  style="width: 100%; height: 70px; border-radius: 55%;"
+                  [src]="story.userPicture"
+                  [alt]="story.userName"
+                  class="CardImg"
+                />
+                <p class="CardHead">{{ story.userName }}</p>
+              </ion-col>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <p
+        style="
+          text-align: center;
+          color: #390e90;
+          letter-spacing: 2px;
+          font-size: 16px;
+          font-weight: 600;
+        "
+      >
+        DISCOVER
+      </p>
+      <ion-row style="text-align: center;">
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element3">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide
+                style="width: 180px !important; position: absolute; z-index: 1;"
+              >
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/4.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Aamez</div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element3">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide
+                style="width: 180px !important; position: absolute; z-index: 1;"
+              >
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/5.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Sanket</div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row style="text-align: center;">
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element3">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide
+                style="width: 180px !important; position: absolute; z-index: 1;"
+              >
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/2.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Prasad</div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element3">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide
+                style="width: 180px !important; position: absolute; z-index: 1;"
+              >
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/3.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Preet</div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <!-- <ion-card
+    style="margin: 0px; border-radius: 30px; margin-top: -6%; z-index: 1;"
+  > -->
+  <!-- <ion-scroll scrollX="true" text-nowrap margin-top>
+    <div
+      class="story"
+      text-center
+      *ngFor="let story of stories;let i=index"
+      [ngClass]="!story.seen ? 'unseen' : ''"
+      (click)="openStoryViewer(i)"
+    >
+      <img [src]="story.userPicture" [alt]="story.userName" />
+
+      <span class="block">{{ story.userName }}</span>
+    </div>
+  </ion-scroll> -->
+  <!-- </ion-card> -->
+</ion-content>

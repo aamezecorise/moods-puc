@@ -1,0 +1,165 @@
+<ion-header [translucent]="true" style="position: absolute; z-index: 1;">
+  <ion-toolbar color="primary" style="padding: 10px;">
+    <ion-searchbar
+      class="my-element3"
+      style="margin-top: 5%; margin-bottom: 10%; color: white;"
+      placeholder="Search"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card
+    style="
+      margin: 0px;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      margin-top: 24%;
+      z-index: 1;
+    "
+  >
+    <ion-icon
+      (click)="onBack()"
+      style="
+        float: left;
+        font-size: 30px;
+        margin-left: 5%;
+        margin-top: 3%;
+        color: #6633cc;
+      "
+      name="chevron-down-outline"
+    ></ion-icon>
+
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="EXPLORE">
+        <ion-label>EXPLORE</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="MY FILTERS">
+        <ion-label>MY FILTERS</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="SAVED">
+        <ion-label>SAVED</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-grid>
+      <ion-row style="text-align: center;">
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element2">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide style="position: absolute; z-index: 1;">
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/4.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Aamez</div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element2">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide style="position: absolute; z-index: 1;">
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/5.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Sanket</div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row style="text-align: center;">
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element2">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide style="position: absolute; z-index: 1;">
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/2.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Prasad</div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card style="border-radius: 10px;" class="my-element2">
+            <ion-slides style="background: white; height: 45vh;">
+              <ion-slide style="position: absolute; z-index: 1;">
+                <ion-img
+                  style="
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    object-fit: cover;
+                  "
+                  src="../assets/imgs/3.jpg"
+                  width="deviceWidth"
+                  height="videoHeight"
+                ></ion-img>
+              </ion-slide>
+            </ion-slides>
+            <div class="myOverlay">
+              <div class="card-title" style="margin: 0; margin-top: 5%;">
+                Dummy Post title
+              </div>
+              <div class="card-subtitle">by Preet</div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
+
+<ion-footer padding no-border>
+  <ion-toolbar>
+    <ion-button
+      class="my-element"
+      (click)="createFilter()"
+      shape="round"
+      size="default"
+      expand="block"
+      >CREATE FILTER</ion-button
+    ></ion-toolbar
+  >
+</ion-footer>

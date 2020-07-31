@@ -1,0 +1,37 @@
+ion-content {
+  --background: #ffffff7d;
+}
+
+.close-icon {
+  font-size: 40px;
+  margin-left: 3%;
+  margin-top: 2%;
+}
+
+.my-element {
+  // display: inline-block;
+
+  animation: bounceInUp; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.5s; /* don't forget to set a duration! */
+}
+
+.my-element2 {
+  // display: inline-block;
+
+  animation: fadeInUp; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.my-element3 {
+  // display: inline-block;
+
+  animation: fadeInDown; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.8s; /* don't forget to set a duration! */
+}
+
+.my-element4 {
+  // display: inline-block;
+
+  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.5s; /* don't forget to set a duration! */
+}

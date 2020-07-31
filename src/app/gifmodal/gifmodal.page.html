@@ -1,0 +1,21 @@
+<ion-content class="my-element4">
+  <ion-icon
+    color="primary"
+    class="close-icon my-element3"
+    (click)="dismiss()"
+    name="close-outline"
+  ></ion-icon>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let gif of gifs" class="my-element2">
+        <img
+          (click)="selectGif(gif)"
+          style="z-index: 1;"
+          src="{{gif.url}}"
+          width="300"
+        />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

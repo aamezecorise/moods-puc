@@ -1,0 +1,275 @@
+<!-- <canvas
+  id="viewport"
+  width="100%"
+  height="100%"
+  style="
+    display: block;
+    position: absolute;
+    height: 100% !important;
+    width: 100% !important;
+    background: transparent;
+  "
+>
+</canvas> -->
+
+<!-- <div *ngIf="snapped" style="position: absolute; height: 100%; width: 100%;">
+  <div *ngFor="let smiley of smileys" drag>
+    {{ smiley }}
+  </div>
+</div> -->
+
+<ion-content fullscreen="true" [forceOverscroll]="false">
+  <ion-slides style="height: -webkit-fill-available;" [options]="slideOpts">
+    <ion-slide class="slide1"></ion-slide>
+    <ion-slide class="slide0"> </ion-slide>
+    <ion-slide class="slide2"> </ion-slide>
+    <ion-slide class="slide3"> </ion-slide>
+    <ion-slide class="slide4"> </ion-slide>
+    <ion-slide class="slide5"> </ion-slide>
+    <ion-slide class="slide6"> </ion-slide>
+    <ion-slide class="slide7"> </ion-slide>
+  </ion-slides>
+
+  <ion-row
+    style="position: absolute; top: 0; width: 100%; align-items: center;"
+  >
+    <ion-toolbar color="none">
+      <ion-buttons slot="start">
+        <ion-button fill="clear" (click)="onback()" class="my-element3">
+          <ion-icon size="large" color="primary" name="close"> </ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-buttons slot="end">
+        <ion-button
+          style="margin-right: 15px;"
+          fill="clear"
+          (click)="presentModal()"
+        >
+          <ion-icon
+            class="icon1"
+            style="font-size: 24px;"
+            src="../../assets/icon/group-14.svg"
+          >
+          </ion-icon>
+        </ion-button>
+
+        <ion-button style="margin-right: 15px;" fill="clear">
+          <ion-icon
+            class="icon2"
+            style="font-size: 24px;"
+            src="../../assets/icon/gradient-24-px-1.svg"
+          >
+          </ion-icon>
+        </ion-button>
+
+        <ion-button
+          style="margin-right: 15px;"
+          (click)="toggleAllowDraw()"
+          fill="clear"
+        >
+          <ion-icon
+            class="icon3"
+            style="font-size: 24px;"
+            src="../../assets/icon/brush-24-px.svg"
+          >
+          </ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" (click)="openText()">
+          <ion-icon
+            class="icon4"
+            style="font-size: 24px;"
+            src="../../assets/icon/text-fields-24-px-1.svg"
+          >
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+    <ion-toolbar color="none">
+      <ion-buttons slot="end">
+        <ion-button
+          fill="clear"
+          (click)="undo()"
+          *ngIf="drawsData.length > 1 && showdrawpad"
+        >
+          <ion-icon
+            style="font-size: 24px;"
+            src="../../assets/icon/undo-24-px-1-copy.svg"
+          >
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-row>
+
+  <!-- gifs pad -->
+  <ion-row
+    *ngFor="let gif of gifData"
+    style="
+      position: absolute;
+      top: -20%;
+      right: 30%;
+      width: 100%;
+      align-items: center;
+    "
+  >
+    <img *ngIf="gif" style="z-index: 1;" src="{{gif.url}}" width="250" drag />
+  </ion-row>
+
+  <!-- gifs pad -->
+
+  <!-- Input Text  -->
+  <ion-row style="position: absolute; top: 0; width: 50%; align-items: center;">
+    <ion-input drag type="text" id="myText" #myText></ion-input>
+  </ion-row>
+
+  <!-- Input Text -->
+
+  <!-- signature pad -->
+
+  <ion-row
+    style="
+      position: absolute;
+      top: 0;
+      width: 100%;
+      align-items: center;
+      z-index: 1;
+      margin-top: 20%;
+    "
+  >
+    <ion-radio-group
+      *ngIf="showdrawpad"
+      style="visibility: hidden;"
+      [(ngModel)]="selectedColor"
+    >
+      <ion-row>
+        <ion-col *ngFor="let color of colors" class="ion-text-center">
+          <ion-radio [value]="color"></ion-radio>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+    <ion-range
+      *ngIf="showdrawpad"
+      orient="vertical"
+      min="2"
+      max="20"
+      color="primary"
+      [(ngModel)]="lineWidth"
+    >
+      <ion-icon size="small" slot="start" name="brush"></ion-icon>
+      <ion-icon slot="end" name="brush"></ion-icon>
+    </ion-range>
+
+    <canvas
+      #imageCanvas
+      (mousedown)="startDrawing($event)"
+      (touchstart)="startDrawing($event)"
+      (touchmove)="moved($event)"
+      (mousemove)="moved($event)"
+      (mouseup)="endDrawing()"
+      (touchend)="endDrawing()"
+    ></canvas>
+  </ion-row>
+
+  <!-- signature pad -->
+
+  <ion-row
+    style="position: absolute; bottom: 0; width: 100%; align-items: center;"
+  >
+    <ion-toolbar text-center color="none" style="margin-bottom: 5%;">
+      <ion-button
+        (click)="setBackground()"
+        class="icon4"
+        style="float: right; height: 60px; width: 60px; margin-right: 4%;"
+        shape="round"
+      >
+        <ion-icon
+          style="font-size: 30px; margin: -20px;"
+          name="camera"
+        ></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+
+    <ion-toolbar text-center color="none" style="margin-bottom: 5%;">
+      <ion-button
+        class="icon2"
+        (click)="exportCanvasImage()"
+        shape="round"
+        style="height: 60px; width: 60px; margin-left: 4%;"
+      >
+        <ion-icon
+          style="font-size: 30px; margin: -20px;"
+          name="arrow-down-circle-outline"
+        ></ion-icon>
+      </ion-button>
+
+      <ion-button
+        (click)="delete()"
+        class="icon2"
+        shape="round"
+        color="danger"
+        style="height: 50px; width: 50px; margin-left: 22%;"
+      >
+        <ion-icon
+          style="font-size: 25px; margin: -20px;"
+          name="trash-outline"
+        ></ion-icon>
+      </ion-button>
+
+      <ion-button
+        class="icon4"
+        style="
+          float: right;
+          margin-right: 4%;
+          width: 94px;
+          height: 44px;
+          border-radius: 22px;
+          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.5);
+          background-image: linear-gradient(to bottom, #8354e1, #6633cc);
+        "
+        shape="round"
+      >
+        Apply
+      </ion-button>
+    </ion-toolbar>
+
+    <!-- <ion-toolbar *ngIf="filtering" color="none" style="background: #ffffff25;">
+      <ion-button
+        *ngFor="let camFilter of [
+      { name: '', effect: 'NONE' },
+      { name: '', effect: 'AQUA' },
+      { name: '', effect: 'BLACKBOARD' },
+      { name: '', effect: 'MONO' },
+      { name: '', effect: 'NEGATIVE' },
+      { name: '', effect: 'POSTERIZE' },
+      { name: '', effect: 'SEPIA' },
+      { name: '', effect: 'SOLARIZE' },
+      { name: '', effect: 'WHITEBOARD' }
+      ]"
+        (click)="setEffect(camFilter?.effect)"
+      >
+        {{ camFilter?.effect }}
+      </ion-button>
+    </ion-toolbar> -->
+    <ion-slides
+      *ngIf="showdrawpad"
+      style="height: -webkit-fill-available; margin-bottom: 3%;"
+      [options]="colorPicker"
+    >
+      <ion-slide *ngFor="let color of colors">
+        <ion-col
+          ><div
+            style="width: 20px; border-radius: 40px; border: 1px solid white;"
+            [style.background]="color"
+            class="color-block"
+            tappable
+            (click)="selectColor(color)"
+          ></div
+        ></ion-col>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+</ion-content>
